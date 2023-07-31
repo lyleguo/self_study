@@ -26,5 +26,8 @@ Our purpose is to find the expectation of some function of $x$ with respect to a
    - Generate $x_{n-1}$ from $p_n$
    - Generate $x_{n-2}$ from $x_{n-1}$ using $T_{n-1}$
    - Repeat until we generate $x_0$ from $x_1$ using $T_1$
-3. Using
+3. Compute the weight $w^{(i)}$ as \
+$$w^{(i)}=\frac{f_{n-1}(x_{n-1})}{f_n(x_{n-1})}\frac{f_{n-2}(x_{n-2})}{f_{n-1}(x_{n-2})}...\frac{f_0(x_0)}{f_1(x_0)}$$
+4. The expectation of some function $a(x)$ with respect to the distribution defined by $f(x)$ can be written as\
+$$\hat{a}=\sum_{i=1}^Nw^{(i)}a(x^{(i)})/\sum_{i=1}^Nw^{(i)}$$
 # Applications in <Reduce, Reuse, Recycle: Compositional Generation with Energy-Based Diffusion Models and MCMC>
