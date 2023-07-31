@@ -7,12 +7,20 @@ Suppose we are interested in a distribition of $x$, with pdf that is proportiona
  it defines. However, we can sample from other distribution that approximates the one defined by $f(x)$. And the pdf of that distribution is proportional to $g(x)$, which we can
  evaluate.
 ## Metropolis-Hastings Algorithm (Markov Chain Monte Carlo)
-Metropolis-Hastings Algorithm is a type of Markov Chain Monte Carlo (MCMC) Algorithm. MCMC is used to sample points from a distribution. It constructs a Markov chain that has 
-the desired distribution as its equilibrium distribution. Then it can obtain a sample of the desired distribution by recording states from the chain. At each step, we only make 
-small changes to state variables. The more steps that are included, the more closely the distribution of the sample matches the actual desired distribution.
-```
+Metropolis-Hastings Algorithm is a type of Markov Chain Monte Carlo (MCMC) Algorithm. MCMC is used to sample points from a distribution. It constructs a Markov chain that has the desired distribution as its equilibrium distribution. Then it can obtain a sample of the desired distribution by recording states from the chain. At each step, we only make small changes to state variables. The more steps that are included, the more closely the distribution of the sample matches the actual desired distribution.\
+Let our target distribution be $\pi$ and we have a transition kernel $Q$.\
 
-```
-## Stimulated Annealing
+Initialize $x_0$\
+For $t=0,1,2,...$\
+$\qquad$ Sample $x'$ from $Q(x'|x_t)$\
+$\qquad$ Compute\
+$$A=min(1,\frac{\pi(x')Q(x_t|x')}{\pi(x_t)Q(x'|x_t)})$$
+$\qquad$ With probability A, we set $x_{t+1}=x'$. Otherwise, $x_{t+1}=x_t$\
+
+## Simulated Annealing
+It is a way of handling multiple modes in an optimization ocntext. Suppose we have a sequence of distribitions from $p_n(x)$ to $p_0(x)$. $p_0$ is the one of interest. Simulated annealing starts from some inital state and simulates a Markov chain to converge to $p_n$. Then simulates the Markov chain to converge to $p_{n-1}$, given the output of previous stage as its input. It repeat such steps until reaches $p_0$.
 # Problem Setting
 
+# Steps
+
+# Applications in <Reduce, Reuse, Recycle: Compositional Generation with Energy-Based Diffusion Models and MCMC>
