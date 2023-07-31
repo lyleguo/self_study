@@ -31,3 +31,11 @@ $$w^{(i)}=\frac{f_{n-1}(x_{n-1})}{f_n(x_{n-1})}\frac{f_{n-2}(x_{n-2})}{f_{n-1}(x
 4. The expectation of some function $a(x)$ with respect to the distribution defined by $f(x)$ can be written as\
 $$\hat{a}=\sum_{i=1}^Nw^{(i)}a(x^{(i)})/\sum_{i=1}^Nw^{(i)}$$
 # Applications in <Reduce, Reuse, Recycle: Compositional Generation with Energy-Based Diffusion Models and MCMC>
+It applies AIS to diffusion models to compose different concepts together. It adapts energy-based parameterizations for diffusion models, which allows the use of MALA and HMC samplers which delivers better results.
+## Hamiltonian Monte Carlo (HMC)
+HMC seeks to sample from an unnormalized probabiltiy distribution $\log p(x)=f(x)+\log Z$. The steps are
+1. Augment our distribution over $x$ with auxiliary variable $v$ and define the joint distribution $p(x,v)=p(x)N(v:0,M)$ where covariance $M$ is called "mass-matrix".
+2. Draw samples $x,v~p(x,v)$. Detailed steps include
+   - Sample $v^i~N(v^i;0,M)$
+   - Integrate a Hamiltonian-converving ODE defined on $x$, $v$ (Hamiltonian Dynamics). Do this using the leapfrog integrator.
+   - Compute Metropolis acceptance probability $min(1, \frac{p(x',v')}{p(x,v)})$ 
