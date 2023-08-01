@@ -33,7 +33,13 @@ $$\hat{a}=\sum_{i=1}^Nw^{(i)}a(x^{(i)})/\sum_{i=1}^Nw^{(i)}$$
 # Applications in <Reduce, Reuse, Recycle: Compositional Generation with Energy-Based Diffusion Models and MCMC>
 Composable Diffusion models are able to combine separate concepts into one image. Existing methods either take a product of $N$ distributions and re-normalize to get a new distribution, or take the average of them to get a mixture distribution. However, both approaches lead to inferior generations. They simply sample from each concept separately and combine them together (e.g., using a weighted summation). Take product model for example, at timestep $t$, the sum of scores of two models is\
 $$\nabla\log q_t^{prod}(x_t)=\nabla\log(\int dx_0q^1(x_0)q(x_t|x_0))+\nabla\log(\int dx_0q^2(x_0)q(x_t|x_0))$$
-It applies AIS to diffusion models to compose different concepts together. It adapts energy-based parameterizations for diffusion models, which allows the use of MALA and HMC samplers which delivers better results.
+However, what we need is\
+$$\nabla\log(\int dx_0q^1(x_0)q^2(x_0)q(x_t|x_0))$$
+They are not equal.\
+We can use AIS to address this problem. Starting from the sum of scores, we use annealed MCMC to reach the true score.
+## Detailed Methods
+1. Energy-based parameterization.
+2. MALA/HMC sampler
 ## Hamiltonian Monte Carlo (HMC)
 HMC seeks to sample from an unnormalized probabiltiy distribution $\log p(x)=f(x)+\log Z$. The steps are
 1. Augment our distribution over $x$ with auxiliary variable $v$ and define the joint distribution $p(x,v)=p(x)N(v:0,M)$ where covariance $M$ is called "mass-matrix".
