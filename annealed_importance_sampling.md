@@ -31,6 +31,8 @@ $$w^{(i)}=\frac{f_{n-1}(x_{n-1})}{f_n(x_{n-1})}\frac{f_{n-2}(x_{n-2})}{f_{n-1}(x
 4. The expectation of some function $a(x)$ with respect to the distribution defined by $f(x)$ can be written as\
 $$\hat{a}=\sum_{i=1}^Nw^{(i)}a(x^{(i)})/\sum_{i=1}^Nw^{(i)}$$
 # Applications in <Reduce, Reuse, Recycle: Compositional Generation with Energy-Based Diffusion Models and MCMC>
+Composable Diffusion models are able to combine separate concepts into one image. Existing methods either take a product of $N$ distributions and re-normalize to get a new distribution, or take the average of them to get a mixture distribution. However, both approaches lead to inferior generations. They simply sample from each concept separately and combine them together (e.g., using a weighted summation). Take product model for example, at timestep $t$, the sum of scores of two models is\
+$$\nabla\log q_t^{prod}(x_t)=\nabla\log(\int dx_0q^1(x_0)q(x_t|x_0))+\nabla\log(\int dx_0q^2(x_0)q(x_t|x_0))$$
 It applies AIS to diffusion models to compose different concepts together. It adapts energy-based parameterizations for diffusion models, which allows the use of MALA and HMC samplers which delivers better results.
 ## Hamiltonian Monte Carlo (HMC)
 HMC seeks to sample from an unnormalized probabiltiy distribution $\log p(x)=f(x)+\log Z$. The steps are
