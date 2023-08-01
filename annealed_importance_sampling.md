@@ -40,6 +40,13 @@ We can use AIS to address this problem. Starting from the sum of scores, we use 
 ## Detailed Methods
 1. Energy-based parameterization.
 2. MALA/HMC sampler
+## Metropolis-Adjusted-Langevin-Algorithm (MALA)
+Starting from traditional Langevin Dynamics, e.g., the one using Euler-Maruyama\
+$$\hat{X}_{k+1}=X_k+\tau\nabla\log(p(X_k))+\sqrt{2\tau}z_t$$
+
+Same as Metropolis-Hastings, we add the update probability
+$$min(1, \frac{\exp^{f_\theta (\hat{X_{k+1}})}}{\exp^{f_\theta(X_k)}} \frac{k(X_k|\hat{X_{k+1}})}{k(\hat{X_{k+1}}|X_k)})$$
+Based on the probability, we set either $X_{k+1}=\hat{X_{k+1}}$ or $X_{k+1}=X_k$.
 ## Hamiltonian Monte Carlo (HMC)
 HMC seeks to sample from an unnormalized probabiltiy distribution $\log p(x)=f(x)+\log Z$. The steps are
 1. Augment our distribution over $x$ with auxiliary variable $v$ and define the joint distribution $p(x,v)=p(x)N(v:0,M)$ where covariance $M$ is called "mass-matrix".
@@ -48,4 +55,3 @@ HMC seeks to sample from an unnormalized probabiltiy distribution $\log p(x)=f(x
    - Integrate a Hamiltonian-converving ODE defined on $x$, $v$ (Hamiltonian Dynamics). Do this using the leapfrog integrator.
    - Compute Metropolis acceptance probability $min(1, \frac{p(x',v')}{p(x,v)})$ 
 ## Implementation
-1. 
