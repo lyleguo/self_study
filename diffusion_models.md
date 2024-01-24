@@ -15,3 +15,5 @@ compare with previous ones, it
 - Uses two text encoders
 - Enlarges the U-Net
 - Uses a base model for generation and a refiner model for improvement
+### Dall-E
+https://arxiv.org/pdf/2102.12092.pdf\
