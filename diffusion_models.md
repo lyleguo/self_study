@@ -43,10 +43,18 @@ It points out a problem of composable diffusion and shows that the latents canno
 # VAE models
 ### Dall-E
 https://arxiv.org/pdf/2102.12092.pdf\
+Two stage training process
+1. Train a VAE (image only)
+2. Concatenate text tokens with image features and train a transformer to model the joint distribution (Fix the VAE)
 ### Dall-E 2
-https://cdn.openai.com/papers/dall-e-2.pdf
+https://cdn.openai.com/papers/dall-e-2.pdf \
+Key takeaways
+- Consists of two models: a prior model that generates CLIP image embeddings given a text caption; a decoder that generates image given CLIP image embeddings
+- For the decoder, the CLIP embeddings are added to time embedding. The CLIP embeddings are also projected and concatenated with the text encoder outputs
+- For the prior model, it compares autoregressive model and diffusion model
 ### Dall-E 3
-https://cdn.openai.com/papers/dall-e-3.pdf
+https://cdn.openai.com/papers/dall-e-3.pdf \
+Rewrite the prompts into detailed ones.
 
 # Variational Autoencoders
 It has an encoder and decoder. The encoder learns the latent representations of the input images and the decoder learns to reconstruct the original images from latents.
