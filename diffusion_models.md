@@ -18,7 +18,14 @@ compare with previous ones, it
 https://arxiv.org/pdf/2112.10741.pdf\
 Apply guided diffusion model to text-guided image synthesis. Compare CLIP guidance and classifier-free guidance and found that the latter yields better results.
 ### IMAGEN
-https://arxiv.org/pdf/2205.11487.pdf
+https://arxiv.org/pdf/2205.11487.pdf\
+The key takeaways are
+- It uses frozen LLM as text encoder (T5-XXL)
+- Dynamic Thresholding
+  - Static Thresholding (clip x to $\[-1,1\]$) combined with large guidance weights prevents generating blank images.
+  - For Dynamic Thresholding, at each timestep, setup a percentile of pixel value $s$ and use $s$ to normalize x to $\[-1,1\]$ 
+- Efficient U-Net
+  - Use more residue blocks at low resolution
 ### 
 RE-IMAGEN: RETRIEVAL-AUGMENTED TEXT-TO-IMAGE GENERATOR
 https://openreview.net/pdf?id=XSEBx0iSjFQ\
