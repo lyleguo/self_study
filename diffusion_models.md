@@ -17,8 +17,22 @@ compare with previous ones, it
 ### GLIDE
 https://arxiv.org/pdf/2112.10741.pdf\
 Apply guided diffusion model to text-guided image synthesis. Compare CLIP guidance and classifier-free guidance and found that the latter yields better results.
-### Imagen
+### IMAGEN
 https://arxiv.org/pdf/2205.11487.pdf
+### 
+RE-IMAGEN: RETRIEVAL-AUGMENTED TEXT-TO-IMAGE GENERATOR
+https://openreview.net/pdf?id=XSEBx0iSjFQ\
+It is a retrival-augmented diffusion model. For each target word in the prompt, it searches for related images in the database. In detail, it construct a <image,text> database for all target words. The model searches for top-k related pairs as additional inputs. The searching is done by computing the similarity between the input prompt and text in pairs. The pairs are encoded using the same encoder in the diffusion U-Net.
+### Composable Diffusion
+https://arxiv.org/pdf/2206.01714.pdf\
+It explains that diffusion models can be viewed as energy-based models (EBM). Hence, methods to compose EBMs can be applied to diffusion models. In this paper, they combine multiple latents which represent different concepts by adding them up, like the energies. The resulting image shows the mixed effect of the combined concepts. These encoded features are combined with the latent features using cross-attention modules. It designs a schedule of using text prompt and neighbors.
+### GLIGEN
+https://arxiv.org/pdf/2301.07093.pdf \
+It primarily studies text-to-image generation conditioned on bounding boxes. It also allows other conditions together with bounding boxes, such as reference images and texts.
+### Reduce, Reuse, Recycle
+https://arxiv.org/pdf/2302.11552.pdf \
+It points out a problem of composable diffusion and shows that the latents cannot be simply added together. It will lead to inferior results. Instead, they propose a Markov Chain Monte Carlo (MCMC) approach to get the combined latents. Specifically, within each denosing step, there is an $N$-round MCMC process.
+
 # VAE models
 ### Dall-E
 https://arxiv.org/pdf/2102.12092.pdf\
