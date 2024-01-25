@@ -1,3 +1,13 @@
+# Fundamentals
+## Forward Process
+Given an image $x_0$, we define the forward process by adding noise to it step by step. At each step, we have\
+$$q(x_t|x_{t-1})=N(x_t;\mu_t=\sqrt{1-\beta_t}x_{t-1},\Sigma_t=\beta_tI)$$
+Accumulatively, at the end step T\
+$$q(x_{1:T}|x_0)=\prod_{t=1}^Tq(x_t|x_{t-1})$$
+Define $\alpha_t=1-\beta_t$ and $\hat{\alpha_t}= \prod_{s=0}^T \alpha_t$, using a reparameterization trick, we have\
+$$x_t=\sqrt{\hat{\alpha_t}}x_0+\sqrt{1-\hat{\alpha_t}}\epsilon_0$$
+Note that it uses the fact that the sum of two Gaussians remains Gaussian and its mean/variance is the sum of the two means/variances.
+
 # Important Diffusion Models
 ### Stable Diffusion
 https://arxiv.org/abs/2112.10752 \
