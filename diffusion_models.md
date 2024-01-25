@@ -20,7 +20,7 @@ The first term is a reconstruction term and it can be learned using a separate d
 https://arxiv.org/abs/2112.10752 \
 The main contribution is that, instead of directly applying models to the whole image, they apply their model to latents. The key methods include
 - Train an encoder-decoder model to learn the latents
-- Time-conditional U-Net
+- Time-conditional U-Net (added to hidden states)
 - Augment U-Net backbones with cross-attention mechanism
 ### Stable Diffusion 2
 Compared with previous ones, it
