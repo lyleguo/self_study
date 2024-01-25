@@ -10,8 +10,11 @@ Note that it uses the fact that the sum of two Gaussians remains Gaussian and it
 ## Reverse Process
 The purpose is to learn the reversed distribution $q(x_{t-1}|x_t)$ so that we can sample a $N(0,I)$, apply this process and get $x_0$. To do this, we train a model $p_{\theta}(x_{t-1}|x_t)$ to approximate $q(x_{t-1}|x_t)$. $p_{\theta}$ is a normal distribution
 $$p_{\theta}(x_{t-1}|x_t)=N(x_{t-1}|\mu_{\theta}(x_t,t), \Sigma_{\theta}(x_t,t))$$
-
-
+## Training Process
+The training purpose is similar to VAE, which is to maximize the Evidence Lower Bound (ELBO)
+$$\log p(x)\geq E_{q(x_1|x_0)}\log p_{\theta}(x_0|x_1) - D_{KL}(q(x_T||x_0)|p(x_T)) - \sum_{t=2}^T E_{q(x_t|x_0)}\[D_{KL}(q(x_{t-1}|x_t,x_0)|p_{\theta}(x_{t-1}|x_t))\]
+$$
+The first term is a reconstruction term and it can be learned using a separate decoder; The second term is independt of $\theta$ so it is ignore during training; The third term formulates the difference between $q(x_{t-1}|x_t,x_0)$ and $p_{\theta}(x_{t-1}|x_t)$.
 # Important Diffusion Models
 ### Stable Diffusion
 https://arxiv.org/abs/2112.10752 \
