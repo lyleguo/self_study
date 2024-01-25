@@ -7,6 +7,10 @@ $$q(x_{1:T}|x_0)=\prod_{t=1}^Tq(x_t|x_{t-1})$$
 Define $\alpha_t=1-\beta_t$ and $\hat{\alpha_t}= \prod_{s=0}^T \alpha_t$, using a reparameterization trick, we have\
 $$x_t=\sqrt{\hat{\alpha_t}}x_0+\sqrt{1-\hat{\alpha_t}}\epsilon_0$$
 Note that it uses the fact that the sum of two Gaussians remains Gaussian and its mean/variance is the sum of the two means/variances.
+## Reverse Process
+The purpose is to learn the reversed distribution $q(x_{t-1}|x_t)$ so that we can sample a $N(0,I)$, apply this process and get $x_0$. To do this, we train a model $p_{\theta}(x_{t-1}|x_t)$ to approximate $q(x_{t-1}|x_t)$. $p_{\theta}$ is a normal distribution
+$$p_{\theta}(x_{t-1}|x_t)=N(x_{t-1}|\mu_{\theta}(x_t,t), \Sigma_{\theta}(x_t,t))$$
+
 
 # Important Diffusion Models
 ### Stable Diffusion
